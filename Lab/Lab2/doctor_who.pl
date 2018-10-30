@@ -13,7 +13,7 @@ fever_library([high_temperature, sweat, headache, muscle_ache]).
 
 cold_pain_library([manageable, mild, no]).
 cold_mood_library([calm, weepy]).
-cold_library([sneeze, cough, weepy, runny_nose, sore_throat]).
+cold_library([sneeze, cough, runny_nose, sore_throat]).
 
 skin_allergy_pain_library([manageable, mild, no]).
 skin_allergy_mood_library([calm, weepy]).
@@ -130,7 +130,7 @@ further_diagnosis(ScoreList, NewScoreList) :-
             ; maybe(melancholia) -> (melancholia_library(ML), ask_symptom(melancholia, ScoreList, NewScoreList_, ML), retract(maybe(melancholia)))
             ; fail),
         further_diagnosis(NewScoreList_, NewScoreList);
-        NewScoreList = ScoreList. % finished retracting all maybe(X)
+        NewScoreList = ScoreList. % finished retracting all maybe(X), meaning that doctor had asked all possible symptoms
 
 %% Wrapper predicate that will call the above predicates to gather info from the patient
 main(Result) :- initial_diagnosis(_),
